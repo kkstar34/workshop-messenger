@@ -7,9 +7,10 @@ import db from "../config/firebaseConfig";
 import { getDocs } from "firebase/firestore";
 import { where } from "firebase/firestore";
 import { useUserAuth } from "./../context/UserAuthContextProvider";
+import { useNavigate } from 'react-router-dom';
 
 function Message() {
-  const { user } = useUserAuth();
+  const { user, logOut } = useUserAuth();
   const [content, setContent] = useState("");
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
@@ -62,8 +63,30 @@ function Message() {
       });
   };
 
+
+  const navigate = useNavigate();
+  const handleLogout = async(e) =>
+  {
+    e.preventDefault();
+
+    try {
+      await logOut();
+      navigate('/');
+    }catch(e) {
+
+
+    }
+ }
+   
+
   return (
     <div className="messenger">
+        <div className="messenger-header">
+            <div>
+                <span className="mr-2">{user.email}</span>
+                <a onClick={handleLogout} href="#empty" style={{textDecoration: 'none'}}><i className="fa fa-power-off"></i> Deconnexion</a>
+            </div>
+        </div>
  
       <div className="messenger--body">
         <div className="messenger--body__title">

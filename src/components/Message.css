@@ -285,7 +285,12 @@ input:focus {
     width: 140px;
     background-color: transparent;
 }
-
+.messenger-header{
+    display: flex;
+    justify-content: end;
+    padding-top: 1rem;
+    padding-right: 1rem;
+}
 @media only screen and (max-width: 370px) {
     .messenger--body__bottom .type textarea{
         width: 100px;
