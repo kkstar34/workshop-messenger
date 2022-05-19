@@ -9,7 +9,7 @@ function AuthSideBar() {
         <div className="col-md-12 col-lg-6 auth__sidebar">
             <h1>
                 <Link to='/' className="text-white no-underline">
-                    Dev Forum
+                    Messenger
                 </Link>
             </h1>
             <IllustrationCoding/>
