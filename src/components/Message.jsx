@@ -13,6 +13,7 @@ function Message() {
   const { user, logOut } = useUserAuth();
   const [content, setContent] = useState("");
   const [messages, setMessages] = useState([]);
+  const navigate = useNavigate();
   const scroll = useRef();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function Message() {
       }
       setMessages(messageTab);
       scroll.current.scrollIntoView({ behavior: 'smooth' })
+      playSound();
     });
 
     return () => {
@@ -64,7 +66,15 @@ function Message() {
   };
 
 
-  const navigate = useNavigate();
+  const playSound = () => {
+      const url = 'audios/ring.mp3';
+    const audio = new Audio(url);
+    audio.play();
+  }
+  
+
+
+ 
   const handleLogout = async(e) =>
   {
     e.preventDefault();
@@ -179,7 +189,7 @@ function Message() {
 
               <li>
                 <a href="#empty">
-                  <i className="far fa-img"></i>
+                  <i className="fas fa-img"></i>
                 </a>
               </li>
 
@@ -190,8 +200,9 @@ function Message() {
               </li>
 
               <li>
-                <a href="#empty">
+                <a href="#empty" >
                   <i className="fas fa-gift"></i>
+
                 </a>
               </li>
 
